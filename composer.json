@@ -1,0 +1,13 @@
+{
+    "name": "YourVendorName/Pushover",
+    "type": "pimcore-plugin",
+    "require": {
+        "pimcore/installer-plugin": ">=1",
+        "capirussa/pushover-php" : "1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pushover\\": "lib"
+        }
+    }
+}
