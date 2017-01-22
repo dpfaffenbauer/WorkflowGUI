@@ -440,7 +440,7 @@ pimcore.plugin.workflowgui.item = Class.create({
                                             }
                                         }.bind(this)
                                     );
-                                },
+                                }.bind(this),
                                 iconCls:"pimcore_icon_add"
                             }
                         ],
@@ -609,7 +609,7 @@ pimcore.plugin.workflowgui.item = Class.create({
         var usersStore = Ext.create('Ext.data.JsonStore', {
             proxy: {
                 type: 'ajax',
-                url: '/admin/user/tree-get-childs-by-id/'
+                url: '/plugin/WorkflowGUI/workflow-settings/users'
             }
         });
         usersStore.load();
@@ -670,7 +670,9 @@ pimcore.plugin.workflowgui.item = Class.create({
                             var eventsData = {};
 
                             eventsRaw.map(function(record) {
-                                eventsData[record.get("key")] = [record.get("class"), record.get("method")]
+                                if(record.get("class") && record.get("method")) {
+                                    eventsData[record.get("key")] = [record.get("class"), record.get("method")]
+                                }
                             });
 
                             var transitions = transitionsStore.getRange();
@@ -756,7 +758,8 @@ pimcore.plugin.workflowgui.item = Class.create({
                         forceSelection: true,
                         queryMode: 'local',
                         displayField: 'text',
-                        valueField: 'id'
+                        valueField: 'id',
+                        multiSelect : true
                     },
                     {
                         xtype: 'combo',
@@ -771,7 +774,8 @@ pimcore.plugin.workflowgui.item = Class.create({
                         forceSelection: true,
                         queryMode: 'local',
                         displayField: 'text',
-                        valueField: 'id'
+                        valueField: 'id',
+                        multiSelect : true
                     },
                     {
                         xtype : 'grid',
@@ -1131,8 +1135,8 @@ pimcore.plugin.workflowgui.item = Class.create({
                         columns : [
                             {
                                 xtype : 'gridcolumn',
-                                dataIndex : 'state',
-                                text : t('state'),
+                                dataIndex : 'status',
+                                text : t('status'),
                                 flex : 1,
                                 renderer : function(value) {
                                     var record = this.statusStore.getById(value);

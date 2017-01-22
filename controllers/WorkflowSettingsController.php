@@ -23,6 +23,27 @@ class WorkflowGUI_WorkflowSettingsController extends \Pimcore\Controller\Action\
         $this->checkPermission("workflows");
     }
 
+    public function usersAction() {
+        $userList = new \Pimcore\Model\User\Listing();
+        $userList->load();
+
+        $roleList = new \Pimcore\Model\User\Role\Listing();
+        $roleList->load();
+
+        $allItems = array_merge($userList->getUsers(), $roleList->getRoles());
+        $returnItems = [];
+
+        foreach($allItems as $item) {
+            $returnItems[] = [
+                "id" => $item->getId(),
+                "text" => $item->getName(),
+                "type" => $item->getType()
+            ];
+        }
+
+        $this->_helper->json($returnItems);
+    }
+
     public function treeAction()
     {
         $workflows = [];
