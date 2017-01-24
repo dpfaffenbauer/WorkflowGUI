@@ -1063,7 +1063,7 @@ pimcore.plugin.workflowgui.item = Class.create({
                 var validActions = transitionDefinitionsRaw[status];
 
                 transitionDefinitions[status] = {
-                    state: status,
+                    status: status,
                     actions: []
                 };
 
