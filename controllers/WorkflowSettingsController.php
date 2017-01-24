@@ -9,12 +9,12 @@
  * files that are distributed with this source code.
  *
  * @copyright  Copyright (c) 2015-2017 Dominik Pfaffenbauer (https://www.pfaffenbauer.at)
- * @license    https://github.com/dpfaffenbauer/pimcore-WorkflowGUI/blob/master/LICENSE.md     GNU General Public License version 3 (GPLv3)
+ * @license    https://github.com/dpfaffenbauer/pimcore-WorkflowGui/blob/master/LICENSE.md     GNU General Public License version 3 (GPLv3)
  */
 
 use Pimcore\Model\Workflow;
 
-class WorkflowGUI_WorkflowSettingsController extends \Pimcore\Controller\Action\Admin\Element
+class WorkflowGui_WorkflowSettingsController extends \Pimcore\Controller\Action\Admin\Element
 {
     public function preDispatch()
     {

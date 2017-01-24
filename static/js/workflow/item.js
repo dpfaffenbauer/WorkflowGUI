@@ -8,7 +8,7 @@
  * files that are distributed with this source code.
  *
  * @copyright  Copyright (c) 2015-2017 Dominik Pfaffenbauer (https://www.pfaffenbauer.at)
- * @license    https://github.com/dpfaffenbauer/pimcore-WorkflowGUI/blob/master/LICENSE.md     GNU General Public License version 3 (GPLv3)
+ * @license    https://github.com/dpfaffenbauer/pimcore-WorkflowGui/blob/master/LICENSE.md     GNU General Public License version 3 (GPLv3)
  */
 
 pimcore.registerNS("pimcore.plugin.workflowgui.item");
@@ -19,7 +19,7 @@ pimcore.plugin.workflowgui.item = Class.create({
         this.id = id;
 
         Ext.Ajax.request({
-            url: "/plugin/WorkflowGUI/workflow-settings/get",
+            url: "/plugin/WorkflowGui/workflow-settings/get",
             success: this.loadComplete.bind(this),
             params: {
                 id: this.id
@@ -609,7 +609,7 @@ pimcore.plugin.workflowgui.item = Class.create({
         var usersStore = Ext.create('Ext.data.JsonStore', {
             proxy: {
                 type: 'ajax',
-                url: '/plugin/WorkflowGUI/workflow-settings/users'
+                url: '/plugin/WorkflowGui/workflow-settings/users'
             }
         });
         usersStore.load();
@@ -1265,7 +1265,7 @@ pimcore.plugin.workflowgui.item = Class.create({
 
     save: function () {
         Ext.Ajax.request({
-            url: "/plugin/WorkflowGUI/workflow-settings/update",
+            url: "/plugin/WorkflowGui/workflow-settings/update",
             method: "post",
             params: {
                 data: this.getData(),

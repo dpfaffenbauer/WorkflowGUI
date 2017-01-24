@@ -8,11 +8,11 @@
  * files that are distributed with this source code.
  *
  * @copyright  Copyright (c) 2015-2017 Dominik Pfaffenbauer (https://www.pfaffenbauer.at)
- * @license    https://github.com/dpfaffenbauer/pimcore-WorkflowGUI/blob/master/LICENSE.md     GNU General Public License version 3 (GPLv3)
+ * @license    https://github.com/dpfaffenbauer/pimcore-WorkflowGui/blob/master/LICENSE.md     GNU General Public License version 3 (GPLv3)
  */
 
-pimcore.registerNS("pimcore.plugin.workflowgui.panel");
-pimcore.plugin.workflowgui.panel = Class.create({
+pimcore.registerNS("pimcore.plugin.WorkflowGui.panel");
+pimcore.plugin.WorkflowGui.panel = Class.create({
 
     initialize: function () {
         this.panels = {};
@@ -54,7 +54,7 @@ pimcore.plugin.workflowgui.panel = Class.create({
                 autoSync: true,
                 proxy: {
                     type: 'ajax',
-                    url: '/plugin/WorkflowGUI/workflow-settings/tree/',
+                    url: '/plugin/WorkflowGui/workflow-settings/tree/',
                     reader: {
                         type: 'json'
                         //,
@@ -132,7 +132,7 @@ pimcore.plugin.workflowgui.panel = Class.create({
             if (this.panels[workflowPanelKey]) {
                 this.panels[workflowPanelKey].activate();
             } else {
-                var workflowPanel = new pimcore.plugin.workflowgui.item(id, this);
+                var workflowPanel = new pimcore.plugin.WorkflowGui.item(id, this);
                 this.panels[workflowPanelKey] = workflowPanel;
             }
         } catch (e) {
@@ -181,7 +181,7 @@ pimcore.plugin.workflowgui.panel = Class.create({
             }
 
             Ext.Ajax.request({
-                url: "/plugin/WorkflowGUI/workflow-settings/add",
+                url: "/plugin/WorkflowGui/workflow-settings/add",
                 params: {
                     name: value
                 },
@@ -208,7 +208,7 @@ pimcore.plugin.workflowgui.panel = Class.create({
 
     deleteField: function (tree, record) {
         Ext.Ajax.request({
-            url: "/plugin/WorkflowGUI/workflow-settings/delete",
+            url: "/plugin/WorkflowGui/workflow-settings/delete",
             params: {
                 id: record.data.id
             }

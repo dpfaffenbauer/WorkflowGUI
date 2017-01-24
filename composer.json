@@ -1,5 +1,5 @@
 {
-    "name": "YourVendorName/Pushover",
+    "name": "dpfaffenbauer/workflow-gui",
     "type": "pimcore-plugin",
     "require": {
         "pimcore/installer-plugin": ">=1",

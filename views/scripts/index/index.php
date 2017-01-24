@@ -1,2 +1,2 @@
 
-WorkflowGUI Plugin works!
+WorkflowGui Plugin works!

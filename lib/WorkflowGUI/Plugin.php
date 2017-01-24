@@ -9,17 +9,17 @@
  * files that are distributed with this source code.
  *
  * @copyright  Copyright (c) 2015-2017 Dominik Pfaffenbauer (https://www.pfaffenbauer.at)
- * @license    https://github.com/dpfaffenbauer/pimcore-WorkflowGUI/blob/master/LICENSE.md     GNU General Public License version 3 (GPLv3)
+ * @license    https://github.com/dpfaffenbauer/pimcore-WorkflowGui/blob/master/LICENSE.md     GNU General Public License version 3 (GPLv3)
  */
 
-namespace WorkflowGUI;
+namespace WorkflowGui;
 
 use Pimcore\API\Plugin as PluginLib;
 use Pimcore\Version;
 
 /**
  * Class Plugin
- * @package WorkflowGUI
+ * @package WorkflowGui
  */
 class Plugin extends PluginLib\AbstractPlugin implements PluginLib\PluginInterface
 {
@@ -33,18 +33,27 @@ class Plugin extends PluginLib\AbstractPlugin implements PluginLib\PluginInterfa
         parent::init();
     }
 
+    /**
+     * @return bool
+     */
     public static function install()
     {
         // implement your own logic here
         return true;
     }
 
+    /**
+     * @return bool
+     */
     public static function uninstall()
     {
         // implement your own logic here
         return true;
     }
 
+    /**
+     * @return bool
+     */
     public static function isInstalled()
     {
         //TODO: Maybe need to change this line until the PR gets merged
@@ -58,7 +67,7 @@ class Plugin extends PluginLib\AbstractPlugin implements PluginLib\PluginInterfa
      */
     public static function getTranslationFileDirectory()
     {
-        return PIMCORE_PLUGINS_PATH.'/WorkflowGUI/static/texts';
+        return PIMCORE_PLUGINS_PATH.'/WorkflowGui/static/texts';
     }
 
     /**
@@ -71,9 +80,9 @@ class Plugin extends PluginLib\AbstractPlugin implements PluginLib\PluginInterfa
     public static function getTranslationFile($language)
     {
         if (is_file(self::getTranslationFileDirectory()."/$language.csv")) {
-            return "/WorkflowGUI/static/texts/$language.csv";
+            return "/WorkflowGui/static/texts/$language.csv";
         } else {
-            return '/WorkflowGUI/static/texts/en.csv';
+            return '/WorkflowGui/static/texts/en.csv';
         }
     }
 
