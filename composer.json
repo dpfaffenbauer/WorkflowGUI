@@ -1,9 +1,11 @@
 {
     "name": "dpfaffenbauer/workflow-gui",
     "type": "pimcore-plugin",
+    "license": "GPLv3",
+    "description": "Adds a nice UI to manage Workflows",
+    "keywords": ["pimcore", "pimcore-workflow"],
     "require": {
-        "pimcore/installer-plugin": ">=1",
-        "capirussa/pushover-php" : "1.0"
+        "pimcore/installer-plugin": ">=1"
     },
     "autoload": {
         "psr-4": {
