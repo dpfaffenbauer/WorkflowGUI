@@ -11,8 +11,8 @@
  * @license    https://github.com/dpfaffenbauer/pimcore-WorkflowGui/blob/master/LICENSE.md     GNU General Public License version 3 (GPLv3)
  */
 
-pimcore.registerNS("pimcore.plugin.WorkflowGui.panel");
-pimcore.plugin.WorkflowGui.panel = Class.create({
+pimcore.registerNS("pimcore.plugin.workflowgui.panel");
+pimcore.plugin.workflowgui.panel = Class.create({
 
     initialize: function () {
         this.panels = {};
@@ -132,7 +132,7 @@ pimcore.plugin.WorkflowGui.panel = Class.create({
             if (this.panels[workflowPanelKey]) {
                 this.panels[workflowPanelKey].activate();
             } else {
-                var workflowPanel = new pimcore.plugin.WorkflowGui.item(id, this);
+                var workflowPanel = new pimcore.plugin.workflowgui.item(id, this);
                 this.panels[workflowPanelKey] = workflowPanel;
             }
         } catch (e) {
