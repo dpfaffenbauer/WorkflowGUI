@@ -545,7 +545,7 @@ pimcore.plugin.workflowgui.item = Class.create({
 
     editAction : function(record, cb) {
         var transitions = {};
-        var transitionTo = record.get("transitionTo");
+        var transitionTo = Ext.isObject(record.get("transitionTo")) ? record.get("transitionTo") : {};
 
         for(var state in transitionTo) {
             var statuses = transitionTo[state];
@@ -623,7 +623,7 @@ pimcore.plugin.workflowgui.item = Class.create({
 
         var allowedStatesStore = this.deepCloneStore(this.statesStore);
 
-        var events = Object.clone(record.get("events"));
+        var events = Object.clone(Ext.isObject(record.get("events")) ? record.get("events") : {});
         Ext.applyIf(events, {
             'before' : [], 'success' : [], 'failure' : []
         });
