@@ -1085,7 +1085,7 @@ pimcore.plugin.workflowgui.item = Class.create({
             if(!Ext.ClassManager.isCreated(modelName) ) {
                 Ext.define(modelName, {
                     extend: 'Ext.data.Model',
-                    idProperty: 'state'
+                    idProperty: 'status'
                 });
             }
 
@@ -1298,12 +1298,12 @@ pimcore.plugin.workflowgui.item = Class.create({
         });
 
         transitionsDefinitions.map(function(record) {
-            transitionsDefinitionsData[record.get("state")] = {
+            transitionsDefinitionsData[record.get("status")] = {
                 "validActions" : {}
             };
 
             Ext.each(record.get("actions"), function(val) {
-                transitionsDefinitionsData[record.get("state")]["validActions"][val] = null;
+                transitionsDefinitionsData[record.get("status")]["validActions"][val] = null;
             });
         });
 
