@@ -9,7 +9,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Pushover\\": "lib"
+            "WorkflowGui\\": "lib"
         }
     }
 }
