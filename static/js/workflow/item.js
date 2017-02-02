@@ -492,7 +492,14 @@ pimcore.plugin.workflowgui.item = Class.create({
                                     handler: function (grid, rowIndex, colIndex) {
                                         this.editAction(grid.store.getAt(rowIndex));
                                     }.bind(this)
-                                },{
+                                }]
+                            },
+                            {
+                                menuDisabled: true,
+                                sortable: false,
+                                xtype: 'actioncolumn',
+                                width: 50,
+                                items: [{
                                     iconCls: 'pimcore_icon_delete',
                                     tooltip: t('delete'),
                                     handler: function (grid, rowIndex, colIndex) {
