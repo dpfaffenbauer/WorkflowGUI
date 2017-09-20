@@ -1,15 +1,23 @@
 {
-    "name": "dpfaffenbauer/workflow-gui",
-    "type": "pimcore-plugin",
-    "license": "GPLv3",
-    "description": "Adds a nice UI to manage Workflows",
-    "keywords": ["pimcore", "pimcore-workflow"],
-    "require": {
-        "pimcore/installer-plugin": ">=1"
-    },
-    "autoload": {
-        "psr-4": {
-            "WorkflowGui\\": "lib"
-        }
+  "name": "dpfaffenbauer/workflow-gui",
+  "type": "pimcore-plugin",
+  "license": "GPLv3",
+  "description": "Adds a nice UI to manage Workflows",
+  "keywords": [
+    "pimcore",
+    "pimcore-workflow"
+  ],
+  "require": {
+    "pimcore/installer-plugin": ">=1"
+  },
+  "autoload": {
+    "psr-4": {
+      "WorkflowGui\\": "lib"
     }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    }
+  }
 }
