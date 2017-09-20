@@ -54,7 +54,7 @@ pimcore.plugin.workflowgui.panel = Class.create({
                 autoSync: true,
                 proxy: {
                     type: 'ajax',
-                    url: '/plugin/WorkflowGui/workflow-settings/tree/',
+                    url: '/admin/workflow/tree',
                     reader: {
                         type: 'json'
                         //,
@@ -181,7 +181,7 @@ pimcore.plugin.workflowgui.panel = Class.create({
             }
 
             Ext.Ajax.request({
-                url: "/plugin/WorkflowGui/workflow-settings/add",
+                url: "/admin/workflow/add",
                 params: {
                     name: value
                 },
@@ -208,7 +208,7 @@ pimcore.plugin.workflowgui.panel = Class.create({
 
     deleteField: function (tree, record) {
         Ext.Ajax.request({
-            url: "/plugin/WorkflowGui/workflow-settings/delete",
+            url: "/admin/workflow/delete",
             params: {
                 id: record.data.id
             }

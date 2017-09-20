@@ -1,0 +1,4 @@
+workflow_gui:
+    resource: "@WorkflowGuiBundle/Controller/"
+    type:     annotation
+    prefix:   /admin

@@ -19,7 +19,7 @@ pimcore.plugin.workflowgui.item = Class.create({
         this.id = id;
 
         Ext.Ajax.request({
-            url: "/plugin/WorkflowGui/workflow-settings/get",
+            url: "/admin/workflow/get",
             success: this.loadComplete.bind(this),
             params: {
                 id: this.id
@@ -616,7 +616,7 @@ pimcore.plugin.workflowgui.item = Class.create({
         var usersStore = Ext.create('Ext.data.JsonStore', {
             proxy: {
                 type: 'ajax',
-                url: '/plugin/WorkflowGui/workflow-settings/users'
+                url: '/admin/workflow/users'
             }
         });
         usersStore.load();
@@ -1272,7 +1272,7 @@ pimcore.plugin.workflowgui.item = Class.create({
 
     save: function () {
         Ext.Ajax.request({
-            url: "/plugin/WorkflowGui/workflow-settings/update",
+            url: "/admin/workflow/update",
             method: "post",
             params: {
                 data: this.getData(),

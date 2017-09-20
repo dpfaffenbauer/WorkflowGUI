@@ -1,2 +1,0 @@
-
-WorkflowGui Plugin works!
