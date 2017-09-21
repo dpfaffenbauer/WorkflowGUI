@@ -28,9 +28,11 @@ pimcore.plugin.workflowgui.item = Class.create({
     },
 
     loadComplete: function (transport) {
-        var response = Ext.decode(transport.responseText);
+        var me = this,
+            response = Ext.decode(transport.responseText);
+
         if(response && response.success) {
-            this.data = response.workflow;
+            me.data = response.workflow;
 
             var modelName = 'PimcoreWorkflow';
             if(!Ext.ClassManager.isCreated(modelName) ) {
@@ -40,22 +42,29 @@ pimcore.plugin.workflowgui.item = Class.create({
                 });
             }
 
-            this.statesStore = new Ext.data.JsonStore({
-                data : this.data.states,
+            me.statesStore = new Ext.data.JsonStore({
+                data : me.data.states,
                 model : modelName
             });
 
-            this.statusStore = new Ext.data.JsonStore({
-                data : this.data.statuses,
+            me.statusStore = new Ext.data.JsonStore({
+                data : me.data.statuses,
+                model : modelName,
+                listeners: {
+                    add: function(store, records, index, eOpts) {
+                        Ext.each(records, function(record) {
+                            me.allowedStatusStoreForTransitionDefinitons.add(record.data);
+                        });
+                    }
+                }
+            });
+
+            me.actionsStore = new Ext.data.JsonStore({
+                data : me.data.actions,
                 model : modelName
             });
 
-            this.actionsStore = new Ext.data.JsonStore({
-                data : this.data.actions,
-                model : modelName
-            });
-
-            this.addLayout();
+            me.addLayout();
         }
     },
 
