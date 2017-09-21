@@ -3,9 +3,17 @@
 namespace WorkflowGuiBundle;
 
 use Pimcore\Extension\Bundle\AbstractPimcoreBundle;
+use Pimcore\Extension\Bundle\Traits\PackageVersionTrait;
 
 class WorkflowGuiBundle extends AbstractPimcoreBundle
 {
+    use PackageVersionTrait;
+
+    protected function getComposerPackageName(): string
+    {
+        return 'dpfaffenbauer/workflow-gui';
+    }
+
     public function getJsPaths()
     {
         return [
