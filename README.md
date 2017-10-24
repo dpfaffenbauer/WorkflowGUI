@@ -11,7 +11,7 @@ Adds a nice GUI to create and edit Workflows in Pimcore.
  - Pimcore 5
 
 ## Getting started
- * Install via composer ```composer require dpfaffenbauer/workflow-gui:2.0.x-dev@dev```
+ * Install via composer ```composer require dpfaffenbauer/workflow-gui:^2.0```
  * Open Extension Manager in Pimcore and enable Plugin (or install via cli ```bin/console pimcore:bundle:enable WorkflowGuiBundle```)
  * Reload Pimcore
 
