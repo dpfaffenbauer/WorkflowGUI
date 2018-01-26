@@ -1,7 +1,7 @@
 {
   "name": "dpfaffenbauer/workflow-gui",
   "type": "pimcore-bundle",
-  "license": "GPLv3",
+  "license": "GPL-3.0-or-later",
   "description": "Adds a nice GUI to Pimcore Workflows",
   "keywords": [
     "pimcore",
