@@ -638,7 +638,9 @@ pimcore.plugin.workflowgui.item = Class.create({
         });
 
         for(var eventKey in events) {
-            events[eventKey].splice(0, 0, eventKey);
+            if(events[eventKey][0] !== eventKey) {
+                events[eventKey].splice(0, 0, eventKey);
+            }
         }
 
         var eventsStore = new Ext.data.ArrayStore({
