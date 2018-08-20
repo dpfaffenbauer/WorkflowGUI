@@ -122,14 +122,6 @@ class WorkflowAdminController extends AdminController
         $types = $data['settings']['types'];
         $assetTypes = $data['settings']['assetTypes'];
         $documentTypes = $data['settings']['documentTypes'];
-
-        foreach ($classes as $k => $classId) {
-            try {
-                $classDefinition = \Pimcore\Model\DataObject\ClassDefinition::getById($classId);
-                $classes[$k] = \ucfirst($classDefinition->getName()) . '::classId()@classFix';
-            } catch (\Exception $e) {
-            }
-        }
         
         $workflowSubject = [
             "types" => $types,
@@ -145,17 +137,6 @@ class WorkflowAdminController extends AdminController
         $workflow->setActions($data['actions']);
         $workflow->setTransitionDefinitions($data['transitionDefinitions']);
         $workflow->save();
-        
-        $cfgFile = \Pimcore\Config::locateConfigFile('workflowmanagement.php');
-        if (\is_writeable($cfgFile)) {
-            $cfg = \file_get_contents($cfgFile);
-            \preg_match_all('/("[a-zA-Z]*::classId\(\)@classFix")/', $cfg, $matches);
-            foreach ($matches[0] as $match) {
-                $replace = \str_replace(['"', '@classFix'], '', $match);
-                $cfg = \str_replace($match, '\\Pimcore\\Model\\DataObject\\' . $replace, $cfg);
-            }
-            \file_put_contents($cfgFile, $cfg);
-        }
 
         return $this->json(['success' => true, 'workflow' => get_object_vars($workflow)]);
     }
