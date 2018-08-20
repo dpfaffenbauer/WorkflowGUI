@@ -632,7 +632,7 @@ pimcore.plugin.workflowgui.item = Class.create({
 
         var allowedStatesStore = this.deepCloneStore(this.statesStore);
 
-        var events = Object.clone(Ext.isObject(record.get("events")) ? record.get("events") : {});
+        var events = Object.extend(Ext.isObject(record.get("events")) ? record.get("events") : {});
         Ext.applyIf(events, {
             'before' : [], 'success' : [], 'failure' : []
         });
