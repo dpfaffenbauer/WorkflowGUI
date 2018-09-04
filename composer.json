@@ -16,6 +16,9 @@
       "role": "Developer"
     }
   ],
+  "require": {
+    "pimcore/pimcore": ">=5.0 <5.5",
+  },
   "autoload": {
     "psr-4": {
       "WorkflowGuiBundle\\": "src/"
