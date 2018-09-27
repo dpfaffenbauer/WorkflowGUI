@@ -1,0 +1,34 @@
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        # automatically injects dependencies in your services
+        autowire: true
+        # automatically registers your services as commands, event subscribers, etc.
+        autoconfigure: true
+        # this means you cannot fetch services directly from the container via $container->get()
+        # if you need to do this, you can override this setting on individual services
+        public: false
+
+    WorkflowGuiBundle\EventListener\WorkflowListener:
+        tags:
+            - { name: kernel.event_subscriber }
+
+    workflow_gui.validation_handler.block:
+        class: WorkflowGuiBundle\Validation\Handler\BlockHandler
+
+    workflow_gui.validation_handler.general:
+        class: WorkflowGuiBundle\Validation\Handler\GeneralHandler
+
+    workflow_gui.validation_handler.localizedfields:
+        class: WorkflowGuiBundle\Validation\Handler\LocalizedfieldsHandler
+
+    workflow_gui.validation_handler_locator:
+        class: WorkflowGuiBundle\Validation\DependencyInjection\ServiceLocator
+        tags: ['container.service_locator']
+        arguments:
+            -
+                block: '@workflow_gui.validation_handler.block'
+                general: '@workflow_gui.validation_handler.general'
+                localizedfields: '@workflow_gui.validation_handler.localizedfields'
+
+    WorkflowGuiBundle\Validation\ValidationManager: ~

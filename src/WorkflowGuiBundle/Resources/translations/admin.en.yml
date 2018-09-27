@@ -31,3 +31,4 @@ problem_creating_new_workflow_action_transition: "Problem creating new workflow 
 state: "State"
 notification_users: "Notification Users"
 workflow_saved_successfully: "Workflow Definition has been saved"
+workflow_validation_rules: "Validation rules"

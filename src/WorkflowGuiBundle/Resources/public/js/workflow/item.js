@@ -7,7 +7,7 @@
  * For the full copyright and license information, please view the LICENSE.md and gpl-3.0.txt
  * files that are distributed with this source code.
  *
- * @copyright  Copyright (c) 2015-2017 Dominik Pfaffenbauer (https://www.pfaffenbauer.at)
+ * @copyright  Copyright (c) 2015-2018 Dominik Pfaffenbauer (https://www.pfaffenbauer.at)
  * @license    https://github.com/dpfaffenbauer/pimcore-WorkflowGui/blob/master/LICENSE.md     GNU General Public License version 3 (GPLv3)
  */
 
@@ -209,7 +209,10 @@ pimcore.plugin.workflowgui.item = Class.create({
                         editable: false,
                         forceSelection: true,
                         queryMode: 'local',
-                        multiSelect : true
+                        multiSelect : true,
+                        listeners: {
+                            change: this.onTypeChange.bind(this)
+                        }
                     },
                     {
                         xtype: 'combo',
@@ -225,7 +228,10 @@ pimcore.plugin.workflowgui.item = Class.create({
                         queryMode: 'local',
                         multiSelect : true,
                         valueField : 'id',
-                        displayField : 'text'
+                        displayField : 'text',
+                        listeners: {
+                            change: this.onClassChange.bind(this)
+                        }
                     },
                     {
                         xtype: 'combo',
@@ -508,6 +514,21 @@ pimcore.plugin.workflowgui.item = Class.create({
                                 sortable: false,
                                 xtype: 'actioncolumn',
                                 width: 50,
+                                items:[{
+                                    iconCls: 'pimcore_icon_operator_booleanformatter',
+                                    tooltip: t('workflow_validation_rules'),
+                                    handler: function (grid, rowIndex, colIndex) {
+                                        var record = grid.store.getAt(rowIndex);
+                                        var validation = new pimcore.plugin.workflowgui.validation(this, record);
+                                        validation.show();
+                                    }.bind(this)
+                                }]
+                            },
+                            {
+                                menuDisabled: true,
+                                sortable: false,
+                                xtype: 'actioncolumn',
+                                width: 50,
                                 items: [{
                                     iconCls: 'pimcore_icon_delete',
                                     tooltip: t('delete'),
@@ -524,20 +545,33 @@ pimcore.plugin.workflowgui.item = Class.create({
                                     Ext.MessageBox.prompt(t('add_workflow_action'), t('enter_the_name_of_the_new_workflow_action'),
                                         function(button, value) {
                                             if (button == "ok") {
+                                                var validation = [];
+
+                                                var settings = this.getSettingsPanel().getForm().getFieldValues();
+                                                if (settings.types.includes('object')) {
+                                                    for (var i = 0; i < settings.classes.length; i++) {
+                                                        validation.push({
+                                                            classId: settings.classes[i],
+                                                            rules: []
+                                                        });
+                                                    }
+                                                }
+
                                                 var u = {
                                                     name: value,
                                                     label: value,
                                                     transitionTo : {},
                                                     notes : {
                                                         required: false
-                                                    }
+                                                    },
+                                                    validation: validation
                                                 };
 
                                                 btn.up("grid").store.add(u);
                                             }
                                         }.bind(this)
                                     );
-                                },
+                                }.bind(this),
                                 iconCls:"pimcore_icon_add"
                             }
                         ],
@@ -1351,5 +1385,54 @@ pimcore.plugin.workflowgui.item = Class.create({
         }));
 
         return target;
+    },
+
+    onTypeChange: function (field, newValue, oldValue, eOpts) {
+        if (!newValue.includes('object')) {
+            this.actionsStore.getRange().forEach(function (record) {
+                record.set('validation', []);
+            });
+        } else if (!oldValue.includes('object')) {
+            var validation = [];
+
+            var settings = this.getSettingsPanel().getForm().getFieldValues();
+            for (var i = 0; i < settings.classes.length; i++) {
+                validation.push({
+                    classId: settings.classes[i],
+                    rules: []
+                });
+            }
+
+            this.actionsStore.getRange().forEach(function (record) {
+                record.set('validation', validation);
+            });
+        }
+    },
+
+    onClassChange: function (field, newValue, oldValue, eOpts) {
+        this.actionsStore.getRange().forEach(function (record) {
+            var validation = record.get('validation') || [];
+
+            validation = validation.filter(function (item) {
+                return newValue.includes(item.classId);
+            });
+
+            for (var i = 0; i < newValue.length; i++) {
+                var classId = newValue[i];
+
+                var exists = validation.some(function (item) {
+                    return classId == item.classId;
+                });
+
+                if (!exists) {
+                    validation.push({
+                        classId: classId,
+                        rules: []
+                    });
+                }
+            }
+
+            record.set('validation', validation);
+        });
     }
 });
