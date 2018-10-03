@@ -14,10 +14,14 @@
       "email": "dominik@pfaffenbauer.at",
       "homepage": "https://www.pfaffenbauer.at/",
       "role": "Developer"
+    },
+    {
+      "name": "Community contributions",
+      "homepage": "https://github.com/dpfaffenbauer/WorkflowGUI/graphs/contributors"
     }
   ],
   "require": {
-    "pimcore/pimcore": ">=5.0 <5.5",
+    "pimcore/pimcore": ">=5.0 <5.5"
   },
   "autoload": {
     "psr-4": {

@@ -1,3 +1,4 @@
+<?php
 /**
  * Workflow GUI Pimcore Plugin
  *
@@ -11,6 +12,24 @@
  * @license    https://github.com/dpfaffenbauer/pimcore-WorkflowGui/blob/master/LICENSE.md     GNU General Public License version 3 (GPLv3)
  */
 
-.pimcore_icon_workflow {
-    background: url(/bundles/pimcoreadmin/img/flat-color-icons/workflow.svg) center center no-repeat !important;
+declare(strict_types=1);
+
+namespace WorkflowGuiBundle\Validation\Handler;
+
+use Pimcore\Model\DataObject\ClassDefinition\Data;
+
+interface HandlerInterface
+{
+    /**
+     * @param Data $data
+     * @param mixed $value
+     * @param array $params
+     * @return bool
+     */
+    public function isValid(Data $data, $value, array $params): bool;
+
+    /**
+     * @return array
+     */
+    public function getErrors(): array;
 }

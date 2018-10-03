@@ -1,3 +1,4 @@
+<?php
 /**
  * Workflow GUI Pimcore Plugin
  *
@@ -11,6 +12,19 @@
  * @license    https://github.com/dpfaffenbauer/pimcore-WorkflowGui/blob/master/LICENSE.md     GNU General Public License version 3 (GPLv3)
  */
 
-.pimcore_icon_workflow {
-    background: url(/bundles/pimcoreadmin/img/flat-color-icons/workflow.svg) center center no-repeat !important;
+declare(strict_types=1);
+
+namespace WorkflowGuiBundle\Validation\DependencyInjection;
+
+interface ServiceLocatorAwareInterface
+{
+    /**
+     * @return ServiceLocator
+     */
+    public function getServiceLocator(): ServiceLocator;
+
+    /**
+     * @param ServiceLocator $serviceLocator
+     */
+    public function setServiceLocator(ServiceLocator $serviceLocator);
 }
