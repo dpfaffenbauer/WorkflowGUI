@@ -1,5 +1,7 @@
 # Pimcore - Workflow GUI
 
+**DEPRECATED** This Plugin is no longer maintained. Please use this Plugin for Pimcore >=5.4: https://github.com/YouweGit/pimcore-workflow-gui
+
 [![Software License](https://img.shields.io/badge/license-GPLv3-brightgreen.svg?style=flat)](LICENSE.md)
 
 **Looking for the current stable (version 1)?
